@@ -1,5 +1,6 @@
-package binaryprojectleetcode;
 
+package binaryprojectleetcode;
+import java.util.*;
 public class binarysearch {
     //Creating Node for BST
   static class Node{
@@ -97,6 +98,26 @@ public class binarysearch {
             }
             return;
         }
+    //Printing Path
+    static void printPath(Node root,ArrayList<Integer>path){
+      if(root==null) return;
+      path.add(root.data);
+      if(root.left==null && root.right==null){
+        printNodes(path);
+      }else{
+        printPath(root.left,path);
+        printPath(root.right,path);
+      }
+      path.remove(path.size()-1);
+      return;
+    }
+    //print function for printing path
+    static void printNodes(ArrayList<Integer>path){
+      for(int i:path){
+        System.out.print(i+"->");
+      }
+      System.out.println();
+    }
     }
     public static void main(String[] args) {
         int[] values={5,1,3,4,2,7};
@@ -117,6 +138,8 @@ public class binarysearch {
         bs.inorder(root);
         System.out.println();
         bs.printInRange(root,2,4);
+    System.out.println();
+    bs.printPath(root,new ArrayList());
     }
     
 }
